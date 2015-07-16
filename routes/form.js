@@ -16,8 +16,11 @@ router.get('/', function(req, res) {
 
 /* Post form */
 router.post('/', function(req, res) {
-  console.log(req.body.comment);
-  res.redirect('form');
+  new Comment({title : req.body.comment})
+  .save(function(err, comment) {
+    console.log(comment)
+    res.redirect('form');
+  });
 });
 
 module.exports = router;
